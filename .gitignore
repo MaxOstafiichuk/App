@@ -8,8 +8,8 @@ lerna-debug.log*
 .pnpm-debug.log*
 
 # Files from directory
-/home/max/App/Dockerfile
-/home/max/App/package.json
+#/home/max/App/Dockerfile
+#/home/max/App/package.json
 
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
