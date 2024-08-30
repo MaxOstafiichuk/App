@@ -4,6 +4,7 @@ WORKDIR /app
 
 COPY ./package.json /app/
 COPY ./index.js /app/src/
+COPY ./index.html /app/src/
 
 RUN yarn install --production
 RUN npm init -y
