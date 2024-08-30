@@ -6,6 +6,8 @@ COPY ./package.json /app/
 COPY ./index.js /app/src/
 
 RUN yarn install --production
+RUN npm init -y
+RUN npm install -g npm@10.8.3
 RUN npm update
 RUN npm install express cors axios
 RUN npm install --save-dev nodemon
