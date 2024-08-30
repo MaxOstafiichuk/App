@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-app.use(express.json());
+app.use(express().use(express.static(__dirname + '/')));
 app.use(cors({ origin: true }));
 
 app.post("/authenticate", async (req, res) => {
@@ -10,7 +10,7 @@ app.post("/authenticate", async (req, res) => {
   return res.json({ username: username, secret: "sha256..." });
 });
 
-app.post("/home", async (req, res) => {return res.send("Hello");})
+app.get("/", async (req, res) => {return res.sendFile(__dirname + '/index.html');})
 
 // цей код відповідає де буде видно апку, не чіпати
 const PORT = process.env.PORT || 3000;
