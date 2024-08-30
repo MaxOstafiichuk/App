@@ -1,0 +1,32 @@
+name: Deploy on Server
+
+on: 
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+    - name: Check out repository code
+      uses: actions/checkout@v3
+
+    - name: Stop all running docker images
+      run: docker stop $(docker ps -a -q)
+
+    - name: Delete containers
+      run: docker rm $(docker ps -a -q)
+
+    - name: Delete images
+      run: docker rmi -f $(docker images -aq)
+
+    - name: Goto directory
+      run: cd /home/max/App
+
+    - name: Build new docker image
+      run: docker build -b app .
+
+    - name: Run container
+      run: sudo docker run -d -p 4000:3000 app
