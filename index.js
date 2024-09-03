@@ -10,7 +10,7 @@ app.post("/authenticate", async (req, res) => {
   return res.json({ username: username, secret: "sha256..." });
 });
 
-app.get("/", async (req, res) => {return res.sendFile(__dirname + '/index.html');})
+app.get("/", async (req, res) => {return res.sendFile(__dirname + '/web-site/index.html');})
 
 // цей код відповідає де буде видно апку, не чіпати
 const PORT = process.env.PORT || 3000;
