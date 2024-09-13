@@ -36,8 +36,8 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views/"));
 
-app.get("/123", async (req, res) => {
-    res.sendFile(__dirname + "/web-site/createuser.html");
+app.get("/", async (req, res) => {
+    res.sendFile(__dirname + "/web-site/index.html");
 });
 
 app.get("/login", (req, res) => {return res.sendFile(__dirname + '/web-site/login.html');});
@@ -48,7 +48,7 @@ app.post("/success", (req, res) => {
     const query = "select * from users where phone_number= ? and password= ?";
     connection.query(query, [phone_number, password], (err, result) => {
         if (result.length > 0) {
-            res.redirect("/home");
+            res.redirect("/");
             console.log('User logged in:', result);
         } else {
             res.send('Login failed. Invalid phone number or password.');
@@ -56,7 +56,7 @@ app.post("/success", (req, res) => {
     });
 });
 
-app.post("/register", (req, res) => {
+app.post("/send_register", (req, res) => {
     const {name, surname, phone_number, password} = req.body;
 
         // Добавити сюди перевірку чи є такий користувач
@@ -72,7 +72,7 @@ app.post("/register", (req, res) => {
         });
 });
 
-app.get("/home", (req, res) => {return res.sendFile(__dirname + '/web-site/index.html');});
+app.get("/register", (req, res) => {return res.sendFile(__dirname + '/web-site/createuser.html');});
 app.get("/search", (req, res) => {return res.sendFile(__dirname + '/web-site/search.html');});
 
 
