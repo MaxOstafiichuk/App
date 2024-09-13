@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY ./package.json /app/
 COPY ./index.js /app/src/
-COPY ./web-site/* /app/src/web/
+COPY ./web-site/* /app/src/
 
 RUN yarn install --production
 RUN npm init -y
