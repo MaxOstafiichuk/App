@@ -9,7 +9,8 @@ lerna-debug.log*
 
 # Files from directory
 #/home/max/App/Dockerfile
-#/home/max/App/package.json
+package.json
+
 #start_containers.sh
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
