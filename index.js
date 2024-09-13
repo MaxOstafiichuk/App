@@ -9,7 +9,7 @@ const API_KEY = "e3a613fa";
 
 // Define the connection variable
 const connection = mysql.createConnection({
-    host: '192.168.1.74',
+    host: '192.168.1.74:3306',
     user: 'connect',
     password: 'Pop80bebe',
     database: 'app'
