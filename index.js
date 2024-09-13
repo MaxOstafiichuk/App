@@ -43,10 +43,10 @@ app.get("/", async (req, res) => {
 app.get("/login", (req, res) => {return res.sendFile(__dirname + '/web-site/login.html');});
 
 app.post("/success", (req, res) => {
-    const {phone_number, password} = req.body;
+    const {user_number, user_password} = req.body;
 
-    const query = "select * from users where phone_number= ? and password= ?";
-    connection.query(query, [phone_number, password], (err, result) => {
+    const query = "select * from users where user_number= ? and user_password= ?";
+    connection.query(query, [user_number, user_password], (err, result) => {
         if (result.length > 0) {
             res.redirect("/");
             console.log('User logged in:', result);
@@ -57,12 +57,12 @@ app.post("/success", (req, res) => {
 });
 
 app.post("/send_register", (req, res) => {
-    const {name, surname, phone_number, password} = req.body;
+    const {user_name, user_surname, user_number, user_password} = req.body;
 
         // Добавити сюди перевірку чи є такий користувач
 
-        const query = "INSERT INTO users (name, surname, phone_number, password) VALUES (?, ?, ?, ?)";
-        connection.query(query, [name, surname, phone_number, password], (err, result) => {
+        const query = "INSERT INTO users (user_name, user_surname, user_number, user_password) VALUES (?, ?, ?, ?)";
+        connection.query(query, [user_name, user_surname, user_number, user_password], (err, result) => {
             if (err) {
                 console.log("Error: ", err);
                 return res.send('Error occurred during registration.');
