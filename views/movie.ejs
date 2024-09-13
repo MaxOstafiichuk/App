@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= movie.Title %> - Movie Info</title>
+</head>
+<body>
+    <img src=<%= movie.Poster %>>
+    <h1>Movie: <%= movie.Title %></h1>
+    <p><strong>Year:</strong> <%= movie.Year %></p>
+    <p><strong>Director:</strong> <%= movie.Director %></p>
+    <p><strong>Actors:</strong> <%= movie.Actors %></p>
+    <p><strong>Plot:</strong> <%= movie.Plot %></p>
+    <p><strong>IMDB Rating:</strong> <%= movie.imdbRating %></p>
+
+    <a href="/web-site/search.html">Back to Search</a>
+</body>
+</html>
