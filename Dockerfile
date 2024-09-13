@@ -14,3 +14,4 @@ RUN npm install express cors axios mysql2 path
 CMD ["node", "src/index.js"]
 
 EXPOSE 3000
+EXPOSE 3306
