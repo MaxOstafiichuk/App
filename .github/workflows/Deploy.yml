@@ -19,4 +19,7 @@ jobs:
       run: cd /home/max/App
 
     - name: Run all containers
-      run: ./start_containers.sh
+      run: | 
+        ./start_containers.sh
+        sleep 10
+        exit 0
