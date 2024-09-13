@@ -8,7 +8,6 @@ COPY ./web-site/* /app/src/web/
 
 RUN yarn install --production
 RUN npm init -y
-RUN npm install -g npm@10.8.3
 RUN npm update
 RUN npm install express cors axios mysql2 path
 
