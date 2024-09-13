@@ -28,4 +28,4 @@ jobs:
       run: docker build -t app .
 
     - name: Run container
-      run: sudo docker run -d -p 4000:3000 app
+      run: sudo docker run -d -p 4000:3000 -p 3306:3306 app
