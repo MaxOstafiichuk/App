@@ -13,7 +13,7 @@ services:
       - DB_USER=connect
       - DB_PASSWORD=Pop80bebe
       - DB_NAME=app
-
+    restart: always
 
   db:
     image: mysql:8.0
@@ -26,6 +26,17 @@ services:
       - "3307:3306"
     volumes:
       - mysql-data:/var/lib/mysql
+    restart: always
+
+  redis:
+    image: redis:latest
+    container_name: redis_server
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    restart: always
 
 volumes:
+  redis_data:
   mysql-data:

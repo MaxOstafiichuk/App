@@ -2,10 +2,31 @@ const express = require("express");
 const cors = require("cors");
 const mysql = require("mysql2");
 const axios = require("axios");
+const session = require('express-session');
+const RedisStore = require('connect-redis')(session);
+const bodyParser = require('body-parser');
 const path = require("path");
 const app = express();
 
 const API_KEY = "e3a613fa";
+app.use(bodyParser.urlencoded({ extended: true }));
+
+const redisClient = redis.createClient({
+    host: 'redis_server', 
+    port: 6379
+  });
+
+redisClient.on('error', (err) => {
+    console.error('Redis error: ', err);
+});
+
+app.use(session({
+    secret: 'yourSecretKey',   // Use a secure key
+    resave: false,
+    saveUninitialized: false,  // Prevent uninitialized sessions
+    cookie: { maxAge: 60000 * 30, secure: false }  // Set cookie to expire after 30 minutes
+  }));
+  
 
 // Define the connection variable
 const pool = mysql.createPool({
@@ -20,18 +41,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Connect to the database
-/*connection.connect((err) => {
-    if (err) {
-        console.log("Error with connection to DB:", err);
-        return;
-    }
-    console.log("Connection successful");
 
-    // End the connection
-    // connection.end();
-});
-*/
 app.use(express.static(__dirname));
 app.use(cors({ origin: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -52,8 +62,17 @@ app.post("/success", (req, res) => {
     const query = "select * from users where user_number= ? and user_password= ?";
     pool.query(query, [user_number, user_password], (err, result) => {
         if (result.length > 0) {
-            res.redirect("/");
+            const user = result[0];
+            if (user.password === password) {
+            req.session.user = { username };
+            res.send(`Logged in as ${username}`);
             console.log('User logged in:', result);
+            }
+            else {
+                return res.status(401).send('Invalid password');
+            }
+            //res.redirect("/");
+            
         } else {
             res.send('Login failed. Invalid phone number or password.');
         }
