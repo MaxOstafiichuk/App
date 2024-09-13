@@ -13,10 +13,7 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Stop all running docker images
-      run: docker stop $(docker ps -a -q)
-
-    - name: Delete containers
-      run: docker rm $(docker ps -a -q)
+      run: docker-compose down
 
     - name: Delete images
       run: docker rmi -f $(docker images -aq)
@@ -24,8 +21,6 @@ jobs:
     - name: Goto directory
       run: cd /home/max/App
 
-    - name: Build new docker image
-      run: docker build -t app .
+    - name: Run all containers
+      run: docker-compose up --build
 
-    - name: Run container
-      run: sudo docker run -d -p 4000:3000 app

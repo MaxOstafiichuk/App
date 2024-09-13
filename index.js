@@ -3,20 +3,25 @@ const cors = require("cors");
 const mysql = require("mysql2");
 const axios = require("axios");
 const path = require("path");
-
+const app = express();
 
 const API_KEY = "e3a613fa";
 
 // Define the connection variable
-const connection = mysql.createConnection({
-    host: '192.168.1.74:3306',
+const pool = mysql.createPool({
+    host: 'db',
     user: 'connect',
     password: 'Pop80bebe',
     database: 'app'
 });
 
+app.use((req, res, next) => {
+    req.db = pool;
+    next();
+});
+
 // Connect to the database
-connection.connect((err) => {
+/*connection.connect((err) => {
     if (err) {
         console.log("Error with connection to DB:", err);
         return;
@@ -26,8 +31,7 @@ connection.connect((err) => {
     // End the connection
     // connection.end();
 });
-
-const app = express();
+*/
 app.use(express.static(__dirname));
 app.use(cors({ origin: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -46,7 +50,7 @@ app.post("/success", (req, res) => {
     const {user_number, user_password} = req.body;
 
     const query = "select * from users where user_number= ? and user_password= ?";
-    connection.query(query, [user_number, user_password], (err, result) => {
+    pool.query(query, [user_number, user_password], (err, result) => {
         if (result.length > 0) {
             res.redirect("/");
             console.log('User logged in:', result);
@@ -62,7 +66,7 @@ app.post("/send_register", (req, res) => {
         // Добавити сюди перевірку чи є такий користувач
 
         const query = "INSERT INTO users (user_name, user_surname, user_number, user_password) VALUES (?, ?, ?, ?)";
-        connection.query(query, [user_name, user_surname, user_number, user_password], (err, result) => {
+        pool.query(query, [user_name, user_surname, user_number, user_password], (err, result) => {
             if (err) {
                 console.log("Error: ", err);
                 return res.send('Error occurred during registration.');

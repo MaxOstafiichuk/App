@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "4000:3000"
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+      - DB_USER=connect
+      - DB_PASSWORD=Pop80bebe
+      - DB_NAME=app
+
+
+  db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: Pop80bebe!
+      MYSQL_DATABASE: app
+      MYSQL_USER: connect
+      MYSQL_PASSWORD: Pop80bebe
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:
