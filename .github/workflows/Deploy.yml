@@ -15,9 +15,6 @@ jobs:
     - name: Stop all running docker images
       run: docker-compose down
 
-    - name: Delete images
-      run: docker rmi -f $(docker images -aq)
-
     - name: Goto directory
       run: cd /home/max/App
 
