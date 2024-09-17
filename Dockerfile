@@ -10,7 +10,7 @@ COPY ./web-site/* /app/src/web-site/
 RUN yarn install --production
 RUN npm init -y
 RUN npm update
-RUN npm install express cors axios mysql2 path ejs express-session body-parser connect-redis
+RUN npm install express cors axios mysql2 path ejs express-session body-parser connect-redis redis bcrypt
 
 CMD ["node", "src/index.js"]
 
