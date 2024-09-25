@@ -1,0 +1,58 @@
+/* CSS */ 
+.button-92 {
+    --c: #fff;
+    /* text color */
+    background: linear-gradient(90deg, #0000 33%, #fff5, #0000 67%) var(--_p,100%)/300% no-repeat,
+      #1265b3;
+    /* background color */
+    color: #0000;
+    border: 2px solid white;
+    transform: perspective(500px) rotateY(calc(20deg*var(--_i,-1)));
+    text-shadow: calc(var(--_i,-1)* 0.08em) -.01em 0   var(--c),
+      calc(var(--_i,-1)*-0.08em)  .01em 2px #0004;
+    outline-offset: .1em;
+    transition: 0.3s;
+  }
+  .button-92:hover,
+  .button-92:focus-visible {
+    --_p: 0%;
+    --_i: 1;
+  }
+  .button-92:active {
+    text-shadow: none;
+    color: var(--c);
+    box-shadow: inset 0 0 9e9q #0005;
+    transition: 0s;
+  }
+  .button-92 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 0;
+    cursor: pointer;
+    padding: .1em .3em;
+  }
+  .btn-main{
+      padding: 30px 100px 30px 100px;
+      font-size: 50px;
+      color: white;
+      text-shadow: 6px 6px 0px #000000;
+      font-family: Josefin Sans;
+      font-weight: 700;
+      font-style: italic; 
+  }
+  .ser-lab{
+    padding: 5px;
+    border: 5px solid rgb(7, 81, 116);
+    border-radius: 3%;
+  }
+  .user-box{
+    margin: 50px 0 50px 0;
+  }
+  .login-box{
+    margin: 100px 0px 100px 0px;
+    border: 6px #e0e0e0 solid;
+    border-radius: 40px;
+    background-color: hsla(0, 0%, 0%, 0.507);
+    box-shadow: rgba(226, 226, 226, 0.562) 0px 0px 15px;
+    backdrop-filter: blur(3px);
+  }
