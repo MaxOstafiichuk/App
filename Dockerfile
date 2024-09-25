@@ -5,7 +5,10 @@ WORKDIR /app
 COPY ./views/ /app/src/views/
 COPY ./package.json /app/
 COPY ./index.js /app/src/
-COPY ./web-site/* /app/src/web-site/
+COPY ./web-site/css /app/src/web-site/css/
+COPY ./web-site/img /app/src/web-site/img/
+COPY ./web-site/Like.js /app/src/web-site/
+COPY ./web-site/loguot.js /app/src/web-site/
 
 RUN yarn install --production
 RUN npm init -y
